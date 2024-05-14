@@ -42,6 +42,14 @@ jobs:
           pip install
           PySide6-Essentials==6.5.3 nuitka==${{ matrix.nuitka-version }}
 
+      - name: Get Nuitka version
+        run: |
+          python3 -m nuitka --version
+
+      - name: Get pip freeze
+        run: |
+          python3 -m pip freeze
+
       - name: Build with nuitka ${{ matrix.nuitka-version }}
         run: |
           python3 -m nuitka --standalone --plugin-enable=pyside6 --disable-console --assume-yes-for-downloads --macos-create-app-bundle ${{ matrix.source }} --output-dir=nuitka
