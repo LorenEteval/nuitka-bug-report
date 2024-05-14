@@ -35,7 +35,7 @@ jobs:
         run: >-
           python3 -m
           pip install
-          "PySide6-Essentials==6.5.3" nuitka
+          "PySide6-Essentials==6.5.3" "nuitka==2.2.1"
 
       - name: Build with nuitka
         run: |
