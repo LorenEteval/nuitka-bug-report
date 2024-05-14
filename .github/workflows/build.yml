@@ -38,6 +38,6 @@ jobs:
           pip install
           "PySide6-Essentials==6.5.3" "nuitka==2.2.1"
 
-      - name: Build with nuitka
+      - name: Build with nuitka 2.2.1
         run: |
-          python3 -m nuitka --standalone --plugin-enable=pyside6 --disable-console --macos-create-app-bundle ${{ matrix.source }} --output-dir=nuitka
+          python3 -m nuitka --standalone --plugin-enable=pyside6 --disable-console --assume-yes-for-downloads --macos-create-app-bundle ${{ matrix.source }} --output-dir=nuitka
