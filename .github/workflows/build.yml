@@ -13,17 +13,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11, macos-12, macos-13]
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
-        source: ["main.py", "main-with-qtnetwork.py"]
+        os: [macos-11, macos-12, macos-13, macos-14]
+        nuitka-version: ["1.8.6", "1.9", "2.2.1"]
+        source: ["main-with-qtnetwork.py"]
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Get Homebrew version
+        run: |
+          brew --version
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.11"
           check-latest: true
 
       - name: Set up Python venv
@@ -36,8 +40,8 @@ jobs:
         run: >-
           python3 -m
           pip install
-          "PySide6-Essentials==6.5.3" "nuitka==1.8.6"
+          PySide6-Essentials==6.5.3 nuitka==${{ matrix.nuitka-version }}
 
-      - name: Build with nuitka 1.8.6
+      - name: Build with nuitka ${{ matrix.nuitka-version }}
         run: |
           python3 -m nuitka --standalone --plugin-enable=pyside6 --disable-console --assume-yes-for-downloads --macos-create-app-bundle ${{ matrix.source }} --output-dir=nuitka
