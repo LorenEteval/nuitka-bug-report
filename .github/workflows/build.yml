@@ -8,14 +8,14 @@ defaults:
 
 jobs:
   build:
-    name: Build ${{ matrix.source }} on ${{ matrix.os }} Python ${{ matrix.python-version }}
+    name: Build ${{ matrix.source }} on ${{ matrix.os }} Nuitka ${{ matrix.nuitka-version }}
     continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-11, macos-12, macos-13, macos-14]
         nuitka-version: ["1.8.6", "1.9", "2.2.1"]
-        source: ["main-with-qtnetwork.py"]
+        source: ["main.py"]
 
     steps:
       - uses: actions/checkout@v4
