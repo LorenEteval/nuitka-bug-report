@@ -9,7 +9,7 @@ defaults:
 jobs:
   build:
     name: Build ${{ matrix.source }} on ${{ matrix.os }} Python ${{ matrix.python-version }}
-    if: always()
+    continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
