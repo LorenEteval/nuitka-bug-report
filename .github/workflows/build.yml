@@ -8,7 +8,7 @@ defaults:
 
 jobs:
   build:
-    name: Build ${{ matrix.source }} on ${{ matrix.os }} Nuitka ${{ matrix.nuitka-version }}
+    name: Build on ${{ matrix.os }} Nuitka ${{ matrix.nuitka-version }}
     continue-on-error: true
     runs-on: ${{ matrix.os }}
     strategy:
