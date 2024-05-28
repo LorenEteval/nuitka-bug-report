@@ -55,6 +55,7 @@ jobs:
         run: |
           brew remove --force --ignore-dependencies openssl@3
           brew cleanup openssl@3
+        if: runner.os == 'macOS' && runner.arch == 'X64'
 
       - name: Build with nuitka ${{ matrix.nuitka-version }}
         run: |
