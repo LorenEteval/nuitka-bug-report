@@ -50,6 +50,12 @@ jobs:
         run: |
           python3 -m pip freeze
 
+      # Remove problematic brew libs if Intel Mac
+      - name: Remove problematic brew libs
+        run: |
+          brew remove --force --ignore-dependencies openssl@3
+          brew cleanup openssl@3
+
       - name: Build with nuitka ${{ matrix.nuitka-version }}
         run: |
           python3 -m nuitka --standalone --plugin-enable=pyside6 --disable-console --assume-yes-for-downloads --macos-create-app-bundle ${{ matrix.source }} --output-dir=nuitka
